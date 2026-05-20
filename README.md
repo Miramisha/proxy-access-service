@@ -42,7 +42,7 @@ http://127.0.0.1:8000/docs
 
 Скрин:
 
-![Swagger](docs/swagger.png)
+![Swagger](docs/swagger.jpg)
 
 ## API
 
