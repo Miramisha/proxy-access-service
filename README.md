@@ -34,6 +34,15 @@ Swagger:
 ```text
 http://127.0.0.1:8000/docs
 ```
+## Swagger UI
+
+Документация API:
+
+http://127.0.0.1:8000/docs
+
+Скрин:
+
+![Swagger](docs/swagger.png)
 
 ## API
 
