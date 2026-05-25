@@ -1,61 +1,197 @@
 # Proxy Access Service
 
-Сервис распределения виртуальных машин между пользователями.
+Сервис для управления доступом пользователей к виртуальным машинам (VM) через ключи активации.
 
-## Стек
+Проект выполнен на:
 
-- Python 3.12
 - FastAPI
 - PostgreSQL
-- Redis
 - SQLAlchemy
+- Redis
+- Celery
 - Docker
-- JWT
-- Swagger
+- Vue 3
+- JWT Authentication
+- WebSocket
+- Pytest
 
-## Возможности
+---
 
-- Регистрация пользователя
-- Авторизация (JWT)
-- Получение профиля
-- Создание виртуальных машин
-- Выдача свободной VM
-- Освобождение VM
-- Хранение данных в PostgreSQL
+# Возможности проекта
+
+### Авторизация и пользователи
+
+✅ Регистрация пользователя
+
+✅ Авторизация по JWT
+
+✅ Смена пароля
+
+✅ Личный кабинет
+
+✅ Logout
+
+---
+
+### Работа с ключами
+
+✅ Генерация activation key
+
+✅ Обновление ключа
+
+✅ Отправка ключа на email через Celery
+
+---
+
+### Работа с VM
+
+✅ Просмотр списка VM
+
+✅ Назначение свободной VM пользователю
+
+✅ Автоматическое освобождение VM
+
+✅ Отображение статуса подключения
+
+---
+
+### Реальное время
+
+✅ WebSocket подключение
+
+✅ Отображение состояния подключения
+
+---
+
+### Инфраструктура
+
+✅ Docker
+
+✅ Docker Compose
+
+✅ Redis
+
+✅ PostgreSQL
+
+✅ Celery Worker
+
+✅ Celery Beat
+
+---
+
+### Тесты
+
+Pytest:
+
+```bash
+docker compose exec backend python -m pytest
+```
+
+Пройдено:
+
+```text
+3 passed
+```
+
+---
+
+# Запуск проекта
+
+## Клонирование
+
+```bash
+git clone https://github.com/YOUR_USERNAME/proxy-access-service.git
+
+cd proxy-access-service
+```
+
+---
+
+## Создать .env
+
+Пример:
+
+```env
+DATABASE_URL=postgresql://admin:admin@postgres_db:5432/proxy_db
+
+SECRET_KEY=supersecretkey
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
+
+REDIS_URL=redis://redis:6379/0
+
+VM_TIMEOUT_MINUTES=30
+
+SMTP_HOST=smtp.mail.ru
+SMTP_PORT=465
+
+SMTP_USER=your_email@mail.ru
+SMTP_PASSWORD=app_password
+
+EMAIL_FROM=your_email@mail.ru
+```
+
+---
 
 ## Запуск
 
+Собрать контейнеры:
+
 ```bash
-docker compose up -d
+docker compose up --build
+```
+
+Остановить:
+
+```bash
+docker compose down
+```
+
+---
+
+# Адреса
+
+Backend:
+
+```text
+http://localhost:8000
 ```
 
 Swagger:
 
 ```text
-http://127.0.0.1:8000/docs
+http://localhost:8000/docs
 ```
-## Swagger UI
 
-Документация API:
+Frontend:
 
-http://127.0.0.1:8000/docs
+```text
+http://localhost:5173
+```
 
-Скрин:
+---
 
-![Swagger](docs/swagger.jpg)
+# Структура проекта
 
-## API
+```text
+backend/
+    app/
+    tests/
+    requirements.txt
 
-POST /api/auth/register
+frontend/
+    src/
 
-POST /api/auth/login
+docker-compose.yml
+README.md
+```
 
-GET /api/users/me
+---
 
-POST /api/vms/
+# Автор
 
-GET /api/vms/
+Карина
 
-POST /api/keys/activate
-
-POST /api/keys/deactivate
+Проект выполнен как тестовое задание на позицию Backend Developer.

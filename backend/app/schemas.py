@@ -43,3 +43,24 @@ class VirtualMachineResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ActivationKeyRequest(BaseModel):
+    activation_key: str
+
+
+class ActivationResponse(BaseModel):
+    message: str
+    vm_id: int
+    host: str
+    port: int
+    protocol: str
+
+
+class RefreshKeyResponse(BaseModel):
+    message: str
+    activation_key: str
+
+class ChangePasswordRequest(BaseModel):
+    old_password: str
+    new_password: str
+    new_password_confirm: str
